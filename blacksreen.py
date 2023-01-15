@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-output_file = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
+image = cv2.VideoWriter('output.avi', fourcc, 20.0, (640, 480))
 
 cap = cv2.VideoCapture(0)
 
@@ -26,8 +26,9 @@ while (cap.isOpened()):
     f=frame-res
     f=np.where(f==0,image,f)
 
-    final_output = cv2.addWeighted(res_1, 1, res_2, 1, 0)
-    output_file.write(final_output)
+    final_output = cv2.addWeighted(res, 1, res, 1, 0)
+    image.write(final_output)
     #Displaying the output to the user
     cv2.imshow("magic", final_output)
     cv2.waitKey(1)
+    
